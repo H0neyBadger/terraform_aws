@@ -42,7 +42,6 @@ variable "aws_security_group_egress" {
     prefix_list_ids = optional(list(string))
     self = optional(bool)
   }))
-
   default = []
 }
 

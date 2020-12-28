@@ -29,6 +29,9 @@ inputs = {
   aws_route_table_route = [
     {
       cidr_block  = "0.0.0.0/0"
+      gateway_id = dependency.internet_gateway.outputs.aws_internet_gateway_id
+    },
+    {
       ipv6_cidr_block  = "::/0"
       gateway_id = dependency.internet_gateway.outputs.aws_internet_gateway_id
     }

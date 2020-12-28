@@ -4,7 +4,7 @@ resource "aws_internet_gateway" "internet_gateway" {
 
   tags = merge(
     {
-      "Name" = format("%s", var.aws_internet_gateway_name)
+      "name" = format("%s", var.aws_internet_gateway_name)
     },
     var.tags,
     var.aws_internet_gateway_tags,

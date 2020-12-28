@@ -1,19 +1,17 @@
 
-terraform {
-  extra_arguments "custom_vars" {
-    commands = [
-      "apply",
-      "plan",
-      "import",
-      "push",
-      "refresh",
-      "destroy",
-    ]
+locals {
+  # https://github.com/gruntwork-io/terragrunt-infrastructure-live-example/blob/master/terragrunt.hcl
 
-    required_var_files = [
-      find_in_parent_folders("common.tfvars")
-    ]
-  }
+  region_vars      = read_terragrunt_config(find_in_parent_folders("region.hcl"))
+  backend_vars     = read_terragrunt_config(find_in_parent_folders("backend.hcl"))
+  environment_vars = read_terragrunt_config(find_in_parent_folders("env.hcl"))
+
+  aws_region       = local.region_vars.locals.aws_region
+  environment      = lookup(local.environment_vars.locals, "environment", "dev")
+
+  # force default values in tags
+  origin_tags      = lookup(local.environment_vars.locals, "tags", {})
+  tags             = merge({ environment = local.environment, aws_region = local.aws_region }, local.origin_tags)
 }
 
 generate "provider" {
@@ -31,26 +29,15 @@ terraform {
   experiments = [module_variable_optional_attrs]
 }
 
-variable "aws_region" {
-  type = string
-  default = "us-east-1"
-}
-
-variable "aws_access_key" {
-  type = string
-  default = null
-}
-
-variable "aws_secret_key" {
-  type = string
-  default = null
-}
-
 provider "aws" {
-  region = var.aws_region
-  access_key = var.aws_access_key
-  secret_key = var.aws_secret_key
+  region = "${local.aws_region}"
 }
 
 EOF
 }
+
+inputs = merge(
+  local.environment_vars.locals,
+  { aws_regio = local.aws_region, tags = local.tags }
+)
+
