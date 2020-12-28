@@ -8,7 +8,7 @@ terraform {
 
 inputs = {
   aws_vpc_name = "example1"
-  aws_vpc_cidr_block = "10.0.0.0/16"
+  aws_vpc_cidr_block = "172.31.0.0/16"
   aws_vpc_assign_generated_ipv6_cidr_block = true
 }
 

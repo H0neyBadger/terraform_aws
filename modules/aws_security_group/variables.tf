@@ -42,15 +42,8 @@ variable "aws_security_group_egress" {
     prefix_list_ids = optional(list(string))
     self = optional(bool)
   }))
-  default = [
-    {
-      description = "allow all"
-      port = 0
-      protocol = "-1"
-      cidr_blocks = ["0.0.0.0/0"]
-      ipv6_cidr_blocks = ["::/0"]
-    },
-  ]
+
+  default = []
 }
 
 variable "aws_security_group_tags" {

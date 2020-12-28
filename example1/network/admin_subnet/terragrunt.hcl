@@ -16,8 +16,8 @@ dependency "vpc" {
 }
 
 inputs = {
-  aws_subnet_name = "private"
+  aws_subnet_name = "admin"
   aws_subnet_vpc_id = dependency.vpc.outputs.aws_vpc_id
-  aws_subnet_cidr_block  = "172.31.16.0/20"
+  aws_subnet_cidr_block  = "172.31.0.0/20"
 }
 

@@ -18,6 +18,6 @@ dependency "vpc" {
 inputs = {
   aws_subnet_name = "public"
   aws_subnet_vpc_id = dependency.vpc.outputs.aws_vpc_id
-  aws_subnet_cidr_block  = "10.0.1.0/24"
+  aws_subnet_cidr_block  = "172.31.32.0/20"
 }
 

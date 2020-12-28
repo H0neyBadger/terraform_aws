@@ -15,7 +15,23 @@ dependency "vpc" {
   }
 }
 
+dependency "internet_gateway" {
+  config_path = "../internet_gateway"
+
+  # mock_outputs_allowed_terraform_commands = ["validate"]
+  mock_outputs = {
+    aws_internet_gateway_id = "fake-internet-gateway-id"
+  }
+}
+
 inputs = {
   aws_route_table_vpc_id = dependency.vpc.outputs.aws_vpc_id
+  aws_route_table_route = [
+    {
+      cidr_block  = "0.0.0.0/0"
+      ipv6_cidr_block  = "::/0"
+      gateway_id = dependency.internet_gateway.outputs.aws_internet_gateway_id
+    }
+  ]
 }
 

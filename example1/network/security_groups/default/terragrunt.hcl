@@ -7,7 +7,7 @@ terraform {
 }
 
 dependency "vpc" {
-  config_path = "../vpc"
+  config_path = "../../vpc"
 
   # mock_outputs_allowed_terraform_commands = ["validate"]
   mock_outputs = {
@@ -16,22 +16,24 @@ dependency "vpc" {
 }
 
 inputs = {
-  aws_security_group_name = "admin"
+  aws_security_group_name = "default"
+  aws_security_group_description = "default VPC security group"
   aws_security_group_vpc_id = dependency.vpc.outputs.aws_vpc_id
+
   aws_security_group_ingress = [
     {
-      description = "allow ssh"
-      port = 22
-      cidr_blocks = ["1.1.1.1/32"]
+      port = 0
+      protocol = "-1"
+      self = true
     },
   ]
 
-  # aws_security_group_egress = [
-  #   {
-  #     description = "allow all"
-  #     port = 0
-  #     protocol = "-1"
-  #     cidr_blocks = ["0.0.0.0/0"]
-  #   },
-  # ]
+  aws_security_group_egress = [
+    {
+      port = 0
+      protocol = "-1"
+      cidr_blocks = ["0.0.0.0/0"]
+      ipv6_cidr_blocks = ["::/0"]
+    },
+  ]
 }
