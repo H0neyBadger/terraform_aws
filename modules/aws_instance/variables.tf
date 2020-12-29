@@ -37,6 +37,16 @@ variable "aws_instance_instance_type" {
   default = "t2.micro"
 }
 
+variable "aws_instance_vpc_security_group_ids" {
+  type = list(string)
+  default = null
+}
+
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#network-interfaces
+# Each of the network_interface blocks attach a network interface to an
+# EC2 Instance during boot time. However, because the network interface
+# is attached at boot-time, replacing/modifying the network interface
+# WILL trigger a recreation of the EC2 Instance.
 variable "aws_instance_network_interfaces" {
   type = list(object({
     device_index       = number

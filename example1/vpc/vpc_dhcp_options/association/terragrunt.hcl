@@ -8,7 +8,7 @@ terraform {
 }
 
 dependency "vpc" {
-  config_path = "../vpc"
+  config_path = "../../../vpc"
 
   # mock_outputs_allowed_terraform_commands = ["validate"]
   mock_outputs = {
@@ -17,7 +17,7 @@ dependency "vpc" {
 }
 
 dependency "vpc_dhcp_options" {
-  config_path = "../vpc_dhcp_options"
+  config_path = "../../vpc_dhcp_options"
 
   # mock_outputs_allowed_terraform_commands = ["validate"]
   mock_outputs = {
