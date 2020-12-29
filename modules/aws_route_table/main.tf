@@ -3,7 +3,7 @@ resource "aws_route_table" "route_table" {
   vpc_id     = var.aws_route_table_vpc_id
 
   dynamic "route" {
-    for_each = var.aws_route_table_route
+    for_each = var.aws_route_table_routes
     iterator = each
     content {
       cidr_block                = each.value.cidr_block
@@ -22,7 +22,7 @@ resource "aws_route_table" "route_table" {
 
   tags = merge(
     {
-      "name" = format("%s", var.aws_route_table_name)
+      "Name" = format("%s", var.aws_route_table_name)
     },
     var.tags,
     var.aws_route_table_tags,

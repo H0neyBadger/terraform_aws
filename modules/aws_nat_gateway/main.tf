@@ -5,7 +5,7 @@ resource "aws_nat_gateway" "nat_gateway" {
 
   tags = merge(
     {
-      "name" = format("%s", var.aws_nat_gateway_name)
+      "Name" = format("%s", var.aws_nat_gateway_name)
     },
     var.tags,
     var.aws_nat_gateway_tags,

@@ -37,7 +37,7 @@ resource "aws_network_acl" "network_acl" {
 
   tags = merge(
     {
-      "name" = format("%s", var.aws_network_acl_name)
+      "Name" = format("%s", var.aws_network_acl_name)
     },
     var.tags,
     var.aws_network_acl_tags,

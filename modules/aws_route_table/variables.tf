@@ -3,7 +3,7 @@ variable "aws_route_table_vpc_id" {
   type = string
 }
 
-variable "aws_route_table_route" {
+variable "aws_route_table_routes" {
   type = list(object({
     cidr_block                = optional(string) 
     ipv6_cidr_block           = optional(string) 

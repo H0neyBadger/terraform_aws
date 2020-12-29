@@ -5,7 +5,7 @@ resource "aws_subnet" "subnet" {
 
   tags = merge(
     {
-      "name" = format("%s", var.aws_subnet_name)
+      "Name" = format("%s", var.aws_subnet_name)
     },
     var.tags,
     var.aws_subnet_tags,

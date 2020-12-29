@@ -7,11 +7,9 @@ locals {
   environment_vars = read_terragrunt_config(find_in_parent_folders("env.hcl"))
 
   aws_region       = local.region_vars.locals.aws_region
-  environment      = lookup(local.environment_vars.locals, "environment", "dev")
 
   # force default values in tags
-  origin_tags      = lookup(local.environment_vars.locals, "tags", {})
-  tags             = merge({ environment = local.environment, aws_region = local.aws_region }, local.origin_tags)
+  tags             = lookup(local.environment_vars.locals, "tags", {})
 }
 
 generate "provider" {
@@ -38,6 +36,6 @@ EOF
 
 inputs = merge(
   local.environment_vars.locals,
-  { aws_regio = local.aws_region, tags = local.tags }
+  { aws_region = local.aws_region, tags = local.tags }
 )
 

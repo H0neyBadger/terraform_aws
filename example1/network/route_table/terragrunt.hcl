@@ -27,7 +27,7 @@ dependency "internet_gateway" {
 
 inputs = {
   aws_route_table_vpc_id = dependency.vpc.outputs.aws_vpc_id
-  aws_route_table_route = [
+  aws_route_table_routes = [
     {
       cidr_block  = "0.0.0.0/0"
       gateway_id = dependency.internet_gateway.outputs.aws_internet_gateway_id

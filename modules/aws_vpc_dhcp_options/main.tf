@@ -8,7 +8,7 @@ resource "aws_vpc_dhcp_options" "vpc_dhcp_options" {
 
   tags = merge(
     {
-      "name" = format("%s", var.aws_vpc_dhcp_options_name)
+      "Name" = format("%s", var.aws_vpc_dhcp_options_name)
     },
     var.tags,
     var.aws_vpc_dhcp_options_tags,
