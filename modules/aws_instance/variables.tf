@@ -42,6 +42,11 @@ variable "aws_instance_vpc_security_group_ids" {
   default = null
 }
 
+variable "aws_instance_key_name" {
+  type = string
+  default = null
+}
+
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#network-interfaces
 # Each of the network_interface blocks attach a network interface to an
 # EC2 Instance during boot time. However, because the network interface

@@ -66,6 +66,7 @@ resource "aws_instance" "instance" {
   ami                    = data.aws_ami.ami.id
   instance_type          = var.aws_instance_instance_type
   vpc_security_group_ids = var.aws_instance_vpc_security_group_ids
+  key_name               = var.aws_instance_key_name
 
   # this association force instance delete on change
   # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#network-interfaces
