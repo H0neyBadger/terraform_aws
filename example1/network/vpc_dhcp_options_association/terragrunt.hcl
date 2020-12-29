@@ -1,6 +1,6 @@
 
 include {
-  path = find_in_parent_folders()
+  path = find_in_parent_folders("terragrunt_base.hcl")
 }
 
 terraform {
