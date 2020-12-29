@@ -7,6 +7,16 @@ variable "aws_subnet_cidr_block" {
   type = string
 }
 
+variable "aws_subnet_ipv6_cidr_block" {
+  type = string
+  default = null
+}
+
+variable "aws_subnet_assign_ipv6_address_on_creation" {
+  type = bool
+  default = null
+}
+
 variable "aws_subnet_name" {
   type = string
   default = "aws-subnet"
