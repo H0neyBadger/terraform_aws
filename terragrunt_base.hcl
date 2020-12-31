@@ -6,7 +6,7 @@ locals {
   backend_vars     = read_terragrunt_config(find_in_parent_folders("backend.hcl"))
   environment_vars = read_terragrunt_config(find_in_parent_folders("env.hcl"))
 
-  aws_region       = local.region_vars.locals.aws_region
+  aws_region       = local.region_vars.locals != null ? lookup(local.region_vars.locals, "aws_region", null) : null
 
   # force default values in tags
   tags             = lookup(local.environment_vars.locals, "tags", {})
@@ -28,7 +28,9 @@ terraform {
 }
 
 provider "aws" {
+%{ if local.aws_region != null }
   region = "${local.aws_region}"
+%{ endif }
 }
 
 EOF
