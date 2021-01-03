@@ -16,6 +16,15 @@ dependency "s3_bucket" {
   }
 }
 
+dependency "cloudfront_origin_access_identity" {
+  config_path = "../cloudfront_origin_access_identity"
+
+  # mock_outputs_allowed_terraform_commands = ["validate"]
+  mock_outputs = {
+    aws_cloudfront_origin_access_identity_cloudfront_access_identity_path = "fake-cloudfront-access-identity-path"
+  }
+}
+
 locals {
   s3_origin_id = "primaryS3"
 }
@@ -28,7 +37,7 @@ inputs = {
       domain_name = dependency.s3_bucket.outputs.aws_s3_bucket_bucket_regional_domain_name
       origin_id   = local.s3_origin_id
       s3_origin_config = [
-        { origin_access_identity = "origin-access-identity/cloudfront/ABCDEFG1234567" }
+        { origin_access_identity = dependency.cloudfront_origin_access_identity.outputs.aws_cloudfront_origin_access_identity_cloudfront_access_identity_path }
       ],
     },
   ]
@@ -60,5 +69,8 @@ inputs = {
       minimum_protocol_version       = "TLSv1"
     }
   ]
+  # optional
+  aws_cloudfront_distribution_price_class = "PriceClass_100"
+  aws_cloudfront_distribution_is_ipv6_enabled = true
 }
 

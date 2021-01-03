@@ -9,6 +9,6 @@ terraform {
 
 inputs = {
   aws_s3_bucket_name = "example3"
-  aws_s3_bucket_acl = "public-read"
+  aws_s3_bucket_acl = "private"
 }
 
