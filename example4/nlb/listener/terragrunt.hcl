@@ -29,7 +29,7 @@ inputs = {
   aws_lb_listener_load_balancer_arn = dependency.nlb.outputs.aws_lb_arn
   aws_lb_target_group_target_type   = "instance"
   aws_lb_listener_port              = 80
-  aws_lb_listener_protocol          = "HTTP"
+  aws_lb_listener_protocol          = "TCP"
 
   aws_lb_listener_default_action    = [{
     type             = "forward"

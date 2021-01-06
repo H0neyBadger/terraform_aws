@@ -6,6 +6,7 @@ resource "aws_lb" "lb" {
   security_groups            = var.aws_lb_security_groups
   subnets                    = var.aws_lb_subnets
   enable_deletion_protection = var.aws_lb_enable_deletion_protection
+  ip_address_type            = var.aws_lb_ip_address_type
 
   dynamic "access_logs" {
     for_each = var.aws_lb_access_logs

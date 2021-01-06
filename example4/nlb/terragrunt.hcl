@@ -32,3 +32,4 @@ inputs = {
   aws_lb_subnets            = [dependency.admin_subnet.outputs.aws_subnet_id]
   aws_lb_ip_address_type    = "dualstack"
 }
+

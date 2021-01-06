@@ -38,6 +38,16 @@ variable "aws_lb_access_logs" {
   default = []
 }
 
+variable "aws_lb_ip_address_type" {
+  type = string
+  default = null
+
+  validation {
+    condition     = can(regex("^(ipv4|dualstack)$", var.aws_lb_ip_address_type))
+    error_message = "The ip_address_type value must be one of `ipv4` or `dualstack`."
+  }
+}
+
 variable "aws_lb_subnet_mapping" {
   type = list(object({
       subnet_id            = string

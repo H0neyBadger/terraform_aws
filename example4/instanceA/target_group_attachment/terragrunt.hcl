@@ -27,5 +27,5 @@ dependency "instance" {
 
 inputs = {
   aws_lb_target_group_attachment_target_group_arn = dependency.target_group.outputs.aws_lb_target_group_arn
-  aws_lb_target_group_attachment_target_ids       = dependency.instance.outputs.aws_instance_arns
+  aws_lb_target_group_attachment_target_ids       = dependency.instance.outputs.aws_instance_ids
 }

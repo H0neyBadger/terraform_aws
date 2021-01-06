@@ -35,7 +35,7 @@ dependency "key_pair" {
 }
 
 inputs = {
-  aws_instance_count = 0
+  aws_instance_count = 1
   aws_ami_owners = [ 137112412989 ]
   aws_ami_filters = [
     {
