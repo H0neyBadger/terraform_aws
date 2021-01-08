@@ -42,6 +42,8 @@ terraform {
 %{ endif }
 %{ if lookup(local.backend_vars.locals, "key", null) != null }
     key            = "${local.backend_vars.locals.key}"
+%{ else }
+    key            = "${path_relative_to_include()}/terraform.tfstate"
 %{ endif }
 %{ if lookup(local.backend_vars.locals, "region", null) != null }
     region         = "${local.backend_vars.locals.region}"
